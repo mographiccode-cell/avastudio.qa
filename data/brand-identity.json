@@ -1,0 +1,46 @@
+{
+  "brand_name": "AVA Studio",
+  "brand_name_ar": "آفا ستوديو",
+  "tagline": "Visual Stories That Inspire",
+  "tagline_ar": "قصص بصرية تلهم",
+  "colors": {
+    "primary": "#0a0a0f",
+    "primary_light": "#1a1a2e",
+    "secondary": "#16213e",
+    "accent_gold": "#c9a96e",
+    "accent_gold_light": "#d4af37",
+    "accent_rose": "#e8c4b8",
+    "text_primary": "#f0ece4",
+    "text_secondary": "#a8a4a0",
+    "text_muted": "#6b6763",
+    "surface_dark": "#12121c",
+    "surface_card": "#1a1a28",
+    "border_subtle": "#2a2a3a",
+    "glow_gold": "rgba(201, 169, 110, 0.3)",
+    "glow_white": "rgba(240, 236, 228, 0.15)"
+  },
+  "typography": {
+    "heading_font": "Cairo, sans-serif",
+    "body_font": "Tajawal, sans-serif",
+    "accent_font": "Playfair Display, serif",
+    "direction": "rtl",
+    "primary_language": "ar"
+  },
+  "visual_style": {
+    "aesthetic": "Cinematic luxury with warm golden accents on deep dark backgrounds",
+    "mood": "Premium, artistic, sophisticated, cinematic",
+    "photography_style": "Dark and moody with dramatic lighting",
+    "design_language": "Minimalist luxury with cinematic elements",
+    "texture": "Film grain, light leaks, lens flares",
+    "iconography": "Minimal line icons with golden accents"
+  },
+  "brand_voice": {
+    "tone": "Professional, artistic, inspiring",
+    "language_style": "Modern Arabic with elegant phrasing",
+    "key_messages": [
+      "إبداع بصري لا حدود له",
+      "نحوّل اللحظات إلى قصص خالدة",
+      "جودة سينمائية في كل إطار"
+    ]
+  }
+}

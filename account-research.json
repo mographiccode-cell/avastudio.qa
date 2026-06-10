@@ -1,0 +1,43 @@
+{
+  "account": {
+    "username": "avastudio.qa",
+    "url": "https://www.instagram.com/avastudio.qa/",
+    "brand_name": "AVA Studio",
+    "brand_name_ar": "آفا ستوديو",
+    "location": "Qatar",
+    "category": "Photography & Videography Studio"
+  },
+  "research_date": "2026-06-11",
+  "data_sources": [
+    {
+      "source": "Instagram Profile Page",
+      "url": "https://www.instagram.com/avastudio.qa/",
+      "status": "SSR disabled - no profile data rendered server-side",
+      "findings": "Page type confirmed as PROFILE. Account exists and is accessible via browser."
+    },
+    {
+      "source": "Instagram API (__a=1)",
+      "url": "https://www.instagram.com/avastudio.qa/?__a=1&__d=1",
+      "status": "BLOCKED - Error 1357055",
+      "findings": "Instagram requires authentication for API access."
+    },
+    {
+      "source": "Instagram oEmbed",
+      "url": "https://api.instagram.com/oembed?url=https://www.instagram.com/avastudio.qa/",
+      "status": "BLOCKED - Redirect to login",
+      "findings": "Public oEmbed endpoint requires authentication."
+    },
+    {
+      "source": "Third-party viewers (imginn, picuki, gramhir, greatfon, imgkoa)",
+      "url": "Multiple",
+      "status": "BLOCKED - 403 or bot detection",
+      "findings": "All third-party Instagram viewers blocked the request."
+    }
+  ],
+  "conclusions": {
+    "accessible": true,
+    "profile_data_accessible": false,
+    "media_accessible": false,
+    "implementation_approach": "Using Instagram official embed API for content display. Brand identity derived from username analysis and creative studio positioning."
+  }
+}

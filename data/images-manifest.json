@@ -1,0 +1,15 @@
+{
+  "note": "Instagram profile picture and post media are served via Instagram CDN and require client-side authentication. Images are embedded via Instagram's official embed API.",
+  "images": [
+    {
+      "id": "profile_avatar",
+      "source": "instagram_embed",
+      "url": "https://www.instagram.com/avastudio.qa/",
+      "type": "profile_picture",
+      "fallback": "Generated SVG avatar placeholder with AVA Studio branding"
+    }
+  ],
+  "instagram_embed_posts": [
+    "https://www.instagram.com/avastudio.qa/embed"
+  ]
+}

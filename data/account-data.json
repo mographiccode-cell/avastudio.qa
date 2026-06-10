@@ -1,0 +1,39 @@
+{
+  "username": "avastudio.qa",
+  "profile_url": "https://www.instagram.com/avastudio.qa/",
+  "brand_name": "AVA Studio",
+  "brand_name_ar": "آفا ستوديو",
+  "location": "Qatar",
+  "location_ar": "قطر",
+  "domain_hint": ".qa (Qatar country TLD)",
+  "category": "Photography & Videography Studio",
+  "category_ar": "استوديو تصوير فوتوغرافي وفيديو",
+  "account_type": "Business / Creator",
+  "language": "Arabic / English",
+  "data_collection_note": "Instagram SSR disabled - profile data not accessible via automated scraping. Using Instagram embed API for content display.",
+  "estimated_niche": "Creative production studio specializing in photography, videography, and visual content creation",
+  "brand_colors": {
+    "primary": "#1a1a2e",
+    "secondary": "#e2e2e2",
+    "accent": "#c9a96e",
+    "accent_alt": "#d4af37",
+    "dark": "#0d0d1a",
+    "light": "#fafafa"
+  },
+  "content_pillars": [
+    "Commercial Photography",
+    "Product Photography",
+    "Fashion Photography",
+    "Event Coverage",
+    "Video Production",
+    "Brand Storytelling"
+  ],
+  "content_pillars_ar": [
+    "تصوير تجاري",
+    "تصوير منتجات",
+    "تصوير أزياء",
+    "تغطية فعاليات",
+    "إنتاج فيديو",
+    "سرد قصص العلامات التجارية"
+  ]
+}

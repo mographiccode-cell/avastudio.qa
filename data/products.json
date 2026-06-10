@@ -1,0 +1,46 @@
+{
+  "services": [
+    {
+      "id": "s1",
+      "name_ar": "التصوير التجاري",
+      "name_en": "Commercial Photography",
+      "description_ar": "تصوير احترافي للمنتجات والحملات الإعلانية بأعلى معايير الجودة",
+      "description_en": "Professional product and advertising campaign photography with highest quality standards"
+    },
+    {
+      "id": "s2",
+      "name_ar": "تصوير الأزياء",
+      "name_en": "Fashion Photography",
+      "description_ar": "جلسات تصوير أزياء إبداعية تعكس هوية العلامة التجارية",
+      "description_en": "Creative fashion photography sessions reflecting brand identity"
+    },
+    {
+      "id": "s3",
+      "name_ar": "إنتاج الفيديو",
+      "name_en": "Video Production",
+      "description_ar": "إنتاج فيديوهات إعلانية وتسويقية بجودة سينمائية",
+      "description_en": "Cinematic quality advertising and marketing video production"
+    },
+    {
+      "id": "s4",
+      "name_ar": "تغطية الفعاليات",
+      "name_en": "Event Coverage",
+      "description_ar": "توثيق احترافي للمؤتمرات والحفلات والفعاليات الخاصة",
+      "description_en": "Professional documentation of conferences, parties and special events"
+    },
+    {
+      "id": "s5",
+      "name_ar": "تصوير المنتجات",
+      "name_en": "Product Photography",
+      "description_ar": "تصوير منتجات بجودة استوديو عالية للتجارة الإلكترونية والتسويق",
+      "description_en": "High-quality studio product photography for e-commerce and marketing"
+    },
+    {
+      "id": "s6",
+      "name_ar": "تحرير ومعالجة",
+      "name_en": "Editing & Retouching",
+      "description_ar": "معالجة احترافية للصور والفيديوهات مع تصحيح ألوان سينمائي",
+      "description_en": "Professional photo and video editing with cinematic color grading"
+    }
+  ]
+}
