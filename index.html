@@ -391,6 +391,62 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #c9a96e;
         }
+
+        /* ─── 3D Hero Card Stack ─── */
+        .card-float {
+            will-change: transform;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+
+        .card-float:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 0 60px rgba(201, 169, 110, 0.25),
+                        0 20px 40px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        .card-3d-hero {
+            animation: card-float-idle 6s ease-in-out infinite;
+        }
+
+        .card-3d-hero:nth-child(1) { animation-delay: 0s; }
+        .card-3d-hero:nth-child(2) { animation-delay: -2s; }
+        .card-3d-hero:nth-child(3) { animation-delay: -4s; }
+        .card-3d-hero:nth-child(4) { animation-delay: -1.5s; }
+        .card-3d-hero:nth-child(5) { animation-delay: -3s; }
+
+        @keyframes card-float-idle {
+            0%, 100% { 
+                transform: translate3d(var(--pos-x), var(--pos-y), var(--depth-z)) 
+                           rotateY(var(--rotate-y)) 
+                           rotateX(var(--rotate-x, 0deg));
+            }
+            25% { 
+                transform: translate3d(calc(var(--pos-x) + 10px), calc(var(--pos-y) - 8px), calc(var(--depth-z) + 10px)) 
+                           rotateY(calc(var(--rotate-y) + 3deg)) 
+                           rotateX(calc(var(--rotate-x, 0deg) - 2deg));
+            }
+            50% { 
+                transform: translate3d(calc(var(--pos-x) - 5px), calc(var(--pos-y) + 5px), calc(var(--depth-z) - 5px)) 
+                           rotateY(calc(var(--rotate-y) - 2deg)) 
+                           rotateX(calc(var(--rotate-x, 0deg) + 3deg));
+            }
+            75% { 
+                transform: translate3d(calc(var(--pos-x) - 8px), calc(var(--pos-y) - 3px), calc(var(--depth-z) + 5px)) 
+                           rotateY(calc(var(--rotate-y) + 1deg)) 
+                           rotateX(calc(var(--rotate-x, 0deg) - 1deg));
+            }
+        }
+
+        /* Apply CSS variables from data attributes via JS fallback */
+        @media (max-width: 768px) {
+            .card-float {
+                transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+        }
     </style>
 </head>
 <body class="font-tajawal bg-brand-dark text-brand-text">
@@ -405,11 +461,11 @@
     <div class="cursor-glow" id="cursorGlow"></div>
 
     <!-- ==================== SCENE 1: CINEMATIC HERO ==================== -->
-    <section class="scene relative min-h-screen flex items-center justify-center overflow-hidden perspective-container">
+    <section class="scene relative min-h-screen flex items-center overflow-hidden perspective-container">
         <!-- Background Layers -->
         <div class="absolute inset-0 z-0">
             <!-- Deep Background -->
-            <div class="absolute inset-0 bg-gradient-to-b from-brand-dark via-brand-surface to-brand-dark parallax-layer" data-depth="0.1"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-brand-dark via-brand-surface to-brand-dark parallax-layer" data-depth="0.1"></div>
 
             <!-- Light Leak Top -->
             <div class="lens-flare-element" style="top: -10%; right: 20%;"></div>
@@ -426,83 +482,151 @@
             <div class="absolute top-[45%] left-[20%] w-1.5 h-1.5 rounded-full bg-brand-gold/30 float-medium parallax-layer" data-depth="0.2"></div>
             <div class="absolute top-[25%] left-[30%] w-0.5 h-0.5 rounded-full bg-white/20 float-slow parallax-layer" data-depth="0.28"></div>
 
-            <!-- Camera Lens Ring -->
-            <div class="absolute top-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full border border-brand-gold/10 opacity-20 parallax-layer" data-depth="0.12"></div>
-            <div class="absolute top-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full border border-brand-gold/15 opacity-15 parallax-layer" data-depth="0.18"></div>
-            <div class="absolute top-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] md:w-[300px] md:h-[300px] rounded-full border border-brand-gold/20 opacity-10 parallax-layer" data-depth="0.22"></div>
+            <!-- 3D Scene Ambient Rings -->
+            <div class="absolute top-[40%] left-[10%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full border border-brand-gold/8 opacity-15 parallax-layer" data-depth="0.08"></div>
+            <div class="absolute top-[35%] left-[5%] w-[300px] h-[300px] md:w-[450px] md:h-[450px] rounded-full border border-brand-gold/12 opacity-12 parallax-layer" data-depth="0.14"></div>
         </div>
 
-        <!-- Hero Content -->
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-            <!-- Logo / Avatar -->
-            <div class="mb-8 md:mb-12 reveal-scale">
-                <div class="inline-flex items-center justify-center w-28 h-28 md:w-36 md:h-36 rounded-full border-2 border-brand-gold/40 bg-brand-surface/80 backdrop-blur-sm glow-pulse overflow-hidden shadow-2xl">
-                    <img 
-                        src="images/logo.jpg"
-                        alt="AVA Studio"
-                        class="w-full h-full object-cover"
-                        loading="eager"
-                        onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'font-playfair text-4xl md:text-5xl text-brand-gold italic font-bold\'>A</span>'"
-                    >
+        <!-- Hero Content - Two Column Layout -->
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-20 md:py-0">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center min-h-screen">
+                
+                <!-- LEFT: 3D Floating Cards -->
+                <div class="relative order-2 md:order-1 perspective-container" style="perspective: 1200px;">
+                    <!-- 3D Card Stack Container -->
+                    <div class="relative h-[500px] md:h-[600px] lg:h-[700px] flex items-center justify-center" id="cardStack3D">
+                        
+                        <!-- Card 1 - Front Center (Z: 0) -->
+                        <div class="absolute card-float card-3d-hero w-36 md:w-44 lg:w-52 rounded-2xl overflow-hidden shadow-2xl border border-brand-border/50"
+                             style="transform: translate3d(20px, -20px, 60px) rotateY(-12deg) rotateX(3deg); z-index: 4;"
+                             data-depth-z="60" data-rotate-y="-12" data-pos-x="20" data-pos-y="-20">
+                            <div class="aspect-[9/16]">
+                                <iframe src="https://www.instagram.com/p/DZQWWfIsYAN/embed" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy" class="w-full h-full pointer-events-none"></iframe>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/60 via-transparent to-transparent pointer-events-none"></div>
+                        </div>
+
+                        <!-- Card 2 - Right Upper (Z: 30) -->
+                        <div class="absolute card-float card-3d-hero w-32 md:w-40 lg:w-48 rounded-2xl overflow-hidden shadow-2xl border border-brand-border/50"
+                             style="transform: translate3d(140px, -80px, 30px) rotateY(8deg) rotateX(-2deg); z-index: 3;"
+                             data-depth-z="30" data-rotate-y="8" data-pos-x="140" data-pos-y="-80">
+                            <div class="aspect-[9/16]">
+                                <iframe src="https://www.instagram.com/p/DZNnu36Moav/embed" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy" class="w-full h-full pointer-events-none"></iframe>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/60 via-transparent to-transparent pointer-events-none"></div>
+                        </div>
+
+                        <!-- Card 3 - Right Lower (Z: -20) -->
+                        <div class="absolute card-float card-3d-hero w-32 md:w-40 lg:w-48 rounded-2xl overflow-hidden shadow-2xl border border-brand-border/50"
+                             style="transform: translate3d(120px, 100px, -20px) rotateY(15deg) rotateX(-5deg); z-index: 2;"
+                             data-depth-z="-20" data-rotate-y="15" data-pos-x="120" data-pos-y="100">
+                            <div class="aspect-[9/16]">
+                                <iframe src="https://www.instagram.com/p/DYVYk5zsTtb/embed" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy" class="w-full h-full pointer-events-none"></iframe>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/60 via-transparent to-transparent pointer-events-none"></div>
+                        </div>
+
+                        <!-- Card 4 - Left Lower (Z: 10) -->
+                        <div class="absolute card-float card-3d-hero w-28 md:w-36 lg:w-40 rounded-2xl overflow-hidden shadow-2xl border border-brand-border/50"
+                             style="transform: translate3d(-100px, 80px, 10px) rotateY(-18deg) rotateX(-3deg); z-index: 1;"
+                             data-depth-z="10" data-rotate-y="-18" data-pos-x="-100" data-pos-y="80">
+                            <div class="aspect-[9/16]">
+                                <iframe src="https://www.instagram.com/p/DYZyP6UDO1V/embed" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy" class="w-full h-full pointer-events-none"></iframe>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/60 via-transparent to-transparent pointer-events-none"></div>
+                        </div>
+
+                        <!-- Card 5 - Far Left Upper (Z: -40) -->
+                        <div class="absolute card-float card-3d-hero w-24 md:w-28 lg:w-32 rounded-2xl overflow-hidden shadow-xl border border-brand-border/40 hidden md:block"
+                             style="transform: translate3d(-140px, -60px, -40px) rotateY(-22deg) rotateX(5deg); z-index: 0; opacity: 0.7;"
+                             data-depth-z="-40" data-rotate-y="-22" data-pos-x="-140" data-pos-y="-60">
+                            <div class="aspect-[9/16]">
+                                <iframe src="https://www.instagram.com/p/DZLHMHWMy3_/embed" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy" class="w-full h-full pointer-events-none"></iframe>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/60 via-transparent to-transparent pointer-events-none"></div>
+                        </div>
+
+                        <!-- Floating Glow Orbs behind cards -->
+                        <div class="absolute w-64 h-64 rounded-full bg-brand-gold/5 blur-3xl" style="top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1;"></div>
+                        <div class="absolute w-40 h-40 rounded-full bg-brand-rose/4 blur-2xl" style="top: 20%; left: 70%; transform: translate(-50%, -50%); z-index: -1;"></div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Text Content -->
+                <div class="relative order-1 md:order-2 text-center md:text-right z-10">
+                    <!-- Logo / Avatar -->
+                    <div class="mb-6 md:mb-10 reveal-scale inline-block md:block">
+                        <div class="inline-flex items-center justify-center w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-brand-gold/40 bg-brand-surface/80 backdrop-blur-sm glow-pulse overflow-hidden shadow-2xl">
+                            <img 
+                                src="images/logo.jpg"
+                                alt="AVA Studio"
+                                class="w-full h-full object-cover"
+                                loading="eager"
+                                onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'font-playfair text-4xl md:text-5xl text-brand-gold italic font-bold\'>A</span>'"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="font-cairo text-4xl md:text-6xl lg:text-7xl font-black mb-5 leading-tight reveal delay-1">
+                        <span class="block text-brand-text">آفا</span>
+                        <span class="block cinematic-text">ستوديو</span>
+                    </h1>
+
+                    <!-- Subheadline -->
+                    <p class="font-cairo text-lg md:text-xl lg:text-2xl text-brand-text-secondary mb-5 reveal delay-2">
+                        حيث تتحول الرؤية إلى فن بصري
+                    </p>
+
+                    <!-- Description -->
+                    <p class="font-tajawal text-sm md:text-base text-brand-text-muted max-w-md md:mr-0 mx-auto md:mx-0 mb-8 leading-relaxed reveal delay-3">
+                        نحوّل رؤيتك الفنية لإنتاج احترافي متكامل ✨<br>
+                        قطر 🇶🇦 • صناعة محتوى | بودكاست | إعلانات 🎬<br>
+                        جلسات تصوير فوتوغرافية 📸
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center md:justify-start justify-center gap-4 reveal delay-4">
+                        <a href="https://www.instagram.com/avastudio.qa/" target="_blank" rel="noopener"
+                           class="btn-glow inline-flex items-center gap-3 bg-brand-gold text-brand-dark font-cairo font-bold px-8 py-4 rounded-full text-lg transition-all hover:bg-brand-gold-light">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                            تابعنا على إنستغرام
+                        </a>
+                        <a href="#contact"
+                           class="inline-flex items-center gap-3 border border-brand-gold/40 text-brand-gold font-cairo font-bold px-8 py-4 rounded-full text-lg transition-all hover:bg-brand-gold/10 hover:border-brand-gold">
+                            تواصل معنا
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- Stats Mini -->
+                    <div class="flex items-center justify-center md:justify-start gap-6 mt-8 reveal delay-4">
+                        <div class="text-center md:text-right">
+                            <span class="block font-cairo text-xl font-bold text-brand-gold">28</span>
+                            <span class="text-xs text-brand-text-muted">عمل إبداعي</span>
+                        </div>
+                        <div class="w-px h-8 bg-brand-border/50"></div>
+                        <div class="text-center md:text-right">
+                            <span class="block font-cairo text-xl font-bold text-brand-gold">516</span>
+                            <span class="text-xs text-brand-text-muted">متابع</span>
+                        </div>
+                        <div class="w-px h-8 bg-brand-border/50"></div>
+                        <div class="text-center md:text-right">
+                            <span class="block font-cairo text-xl font-bold text-brand-gold">🇶🇦</span>
+                            <span class="text-xs text-brand-text-muted">الدوحة</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Main Headline -->
-            <h1 class="font-cairo text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight reveal delay-1">
-                <span class="block text-brand-text">آفا</span>
-                <span class="block cinematic-text">ستوديو</span>
-            </h1>
-
-            <!-- Subheadline -->
-            <p class="font-cairo text-lg md:text-xl lg:text-2xl text-brand-text-secondary mb-4 reveal delay-2">
-                حيث تتحول الرؤية إلى فن بصري
-            </p>
-
-            <!-- Description - Real Bio -->
-            <p class="font-tajawal text-sm md:text-base text-brand-text-muted max-w-lg mx-auto mb-10 leading-relaxed reveal delay-3">
-                نحوّل رؤيتك الفنية لإنتاج احترافي متكامل ✨<br>قطر 🇶🇦 • صناعة محتوى | بودكاست | إعلانات 🎬<br>جلسات تصوير فوتوغرافية 📸
-            </p>
-
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal delay-4">
-                <a href="https://www.instagram.com/avastudio.qa/" target="_blank" rel="noopener"
-                   class="btn-glow inline-flex items-center gap-3 bg-brand-gold text-brand-dark font-cairo font-bold px-8 py-4 rounded-full text-lg transition-all hover:bg-brand-gold-light">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                    تابعنا على إنستغرام
-                </a>
-                <a href="#contact"
-                   class="inline-flex items-center gap-3 border border-brand-gold/40 text-brand-gold font-cairo font-bold px-8 py-4 rounded-full text-lg transition-all hover:bg-brand-gold/10 hover:border-brand-gold">
-                    تواصل معنا
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </a>
-            </div>
-
-            <!-- Hero Portfolio Collage - Instagram Post Embeds -->
-            <div class="mt-12 md:mt-16 reveal delay-5">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto px-2">
-                    <div class="instagram-embed-wrapper rounded-xl overflow-hidden shadow-lg card-3d aspect-[9/16] md:aspect-[4/5]">
-                        <iframe src="https://www.instagram.com/p/DZQWWfIsYAN/embed" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy" style="min-width:100%;min-height:100%;"></iframe>
-                    </div>
-                    <div class="instagram-embed-wrapper rounded-xl overflow-hidden shadow-lg card-3d aspect-[9/16] md:aspect-[4/5]">
-                        <iframe src="https://www.instagram.com/p/DZNnu36Moav/embed" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy" style="min-width:100%;min-height:100%;"></iframe>
-                    </div>
-                    <div class="instagram-embed-wrapper rounded-xl overflow-hidden shadow-lg card-3d aspect-[9/16] md:aspect-[4/5] hidden md:block">
-                        <iframe src="https://www.instagram.com/p/DYVYk5zsTtb/embed" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy" style="min-width:100%;min-height:100%;"></iframe>
-                    </div>
-                    <div class="instagram-embed-wrapper rounded-xl overflow-hidden shadow-lg card-3d aspect-[9/16] md:aspect-[4/5] hidden md:block">
-                        <iframe src="https://www.instagram.com/p/DYZyP6UDO1V/embed" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy" style="min-width:100%;min-height:100%;"></iframe>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scroll Indicator -->
-            <div class="mt-12 md:mt-16 reveal delay-5">
-                <div class="flex flex-col items-center gap-2 text-brand-text-muted">
-                    <span class="text-xs tracking-widest font-cairo">اسحب للاستكشاف</span>
-                    <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-                    </svg>
-                </div>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 right-1/2 translate-x-1/2 z-10 reveal delay-5">
+            <div class="flex flex-col items-center gap-2 text-brand-text-muted">
+                <span class="text-xs tracking-widest font-cairo">اسحب للاستكشاف</span>
+                <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
             </div>
         </div>
 
@@ -964,6 +1088,45 @@
                 card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1)';
             });
         });
+
+        // ── 3D Hero Card Stack: CSS Variable Setup ──
+        (function initHeroCards() {
+            const heroCards = document.querySelectorAll('.card-3d-hero');
+            heroCards.forEach(card => {
+                const z = card.getAttribute('data-depth-z') || '0';
+                const ry = card.getAttribute('data-rotate-y') || '0';
+                const px = card.getAttribute('data-pos-x') || '0';
+                const py = card.getAttribute('data-pos-y') || '0';
+                
+                card.style.setProperty('--depth-z', z + 'px');
+                card.style.setProperty('--rotate-y', ry + 'deg');
+                card.style.setProperty('--rotate-x', '0deg');
+                card.style.setProperty('--pos-x', px + 'px');
+                card.style.setProperty('--pos-y', py + 'px');
+            });
+
+            // Mouse-based 3D parallax on the card stack container
+            const stackContainer = document.getElementById('cardStack3D');
+            if (stackContainer) {
+                stackContainer.addEventListener('mousemove', (e) => {
+                    const rect = stackContainer.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    
+                    const maxRotate = 8;
+                    const rotateY = x * maxRotate;
+                    const rotateX = -y * maxRotate;
+                    
+                    stackContainer.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                stackContainer.addEventListener('mouseleave', () => {
+                    stackContainer.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
+                });
+                
+                stackContainer.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            }
+        })();
 
         // ── Initialize ──
         console.log('%c🎬 AVA Studio | آفا ستوديو %c— Cinematic Landing Experience',
