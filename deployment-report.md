@@ -14,11 +14,11 @@
 4. Source: GitHub Actions (deploy.yml workflow)
 
 ### GitHub Pages URL
-Once deployed, the landing page will be available at:
-**https://[username].github.io/avastudio.qa/**
+The landing page is live at:
+**https://mographiccode-cell.github.io/avastudio.qa/**
 
 ### Files Deployed
-- `landing-page.html` — Main landing page (cinematic 3D design)
+- `index.html` — Main landing page (cinematic 3D design)
 - `account-research.json` — Research data
 - `account-summary.md` — Account summary
 - `README.md` — Project documentation
@@ -55,8 +55,8 @@ Once deployed, the landing page will be available at:
 - [x] Mobile responsive design
 - [x] SEO meta tags included
 - [x] GitHub Actions workflow created
-- [ ] GitHub Pages enabled
-- [ ] Live URL verified
+- [x] GitHub Pages enabled
+- [x] Live URL verified — https://mographiccode-cell.github.io/avastudio.qa/
 
 ### Notes
 - Instagram profile data scraping was not possible due to Instagram's anti-scraping measures (SSR disabled, API blocked)

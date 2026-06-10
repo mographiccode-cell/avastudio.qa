@@ -24,7 +24,7 @@
 ## هيكل المشروع
 ```
 avastudio.qa/
-├── landing-page.html      # صفحة الهبوط الرئيسية
+├── index.html             # صفحة الهبوط الرئيسية
 ├── account-research.json  # بيانات البحث
 ├── account-summary.md     # ملخص الحساب
 ├── README.md              # التوثيق
