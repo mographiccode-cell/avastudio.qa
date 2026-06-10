@@ -1,15 +1,25 @@
 {
-  "note": "Instagram profile picture and post media are served via Instagram CDN and require client-side authentication. Images are embedded via Instagram's official embed API.",
-  "images": [
-    {
-      "id": "profile_avatar",
-      "source": "instagram_embed",
-      "url": "https://www.instagram.com/avastudio.qa/",
-      "type": "profile_picture",
-      "fallback": "Generated SVG avatar placeholder with AVA Studio branding"
-    }
+  "note": "Instagram CDN image URLs extracted from user feed API. CDN requires browser context with proper sessions. Images embedded via Instagram official embed API.",
+  "avatar": {
+    "source": "og:image meta tag",
+    "url": "https://scontent-mct1-2.cdninstagram.com/v/t51.82787-19/583717115_17849264508597150_3932462941090848394_n.jpg",
+    "size": "640x640 (scalable to s150x150, s320x320)"
+  },
+  "posts": [
+    {"shortcode": "DZQWWfIsYAN", "type": "video_cover", "resolution": "640x1136", "caption": "AVA Studio | 77574700 | Doha"},
+    {"shortcode": "DZNnu36Moav", "type": "video_cover", "resolution": "640x1136", "caption": "AVA Studio | Doha | 77574700"},
+    {"shortcode": "DZLHMHWMy3_", "type": "video_cover", "resolution": "640x1136", "caption": "AVA Studio Qatar | 77574700"},
+    {"shortcode": "DYsWdczoJpD", "type": "video_cover", "resolution": "640x1136", "caption": "@avastudio.qa"},
+    {"shortcode": "DYZyP6UDO1V", "type": "carousel_8slides", "resolution": "1080x1440", "caption": "AVA Studio | #qatar #doha"},
+    {"shortcode": "DYVYk5zsTtb", "type": "photo", "resolution": "1440x1440", "caption": "AVA Production | #qatar #doha #explore"},
+    {"shortcode": "DYP1Hu4MET0", "type": "portrait", "resolution": "941x1672", "caption": "AVA Studio | 77574700 | #qatar"},
+    {"shortcode": "DYK53WBsGuy", "type": "portrait", "resolution": "720x1280", "caption": "AVA Studio | #qatar"},
+    {"shortcode": "DX8sWSxjLFp", "type": "carousel_5slides", "resolution": "1080x1350", "caption": "AVA Studio | 77574700 | #qatar"},
+    {"shortcode": "DXpSW0xjPYr", "type": "video_cover", "resolution": "640x1136", "caption": "AVA Studio | #qatar"},
+    {"shortcode": "DXkK4DbDKdj", "type": "portrait", "resolution": "1215x2160", "caption": "AVA | #qatar"},
+    {"shortcode": "DXZt14SjMVd", "type": "portrait", "resolution": "720x1280", "caption": "AVA Studio | #qatar"}
   ],
-  "instagram_embed_posts": [
-    "https://www.instagram.com/avastudio.qa/embed"
-  ]
+  "total_posts_extracted": 12,
+  "total_available": 28,
+  "cdn_note": "All images hosted on scontent-mct1-2.cdninstagram.com. CDN URLs are session-bound and expire. Browser-based img tags and Instagram embed iframes used for display."
 }
